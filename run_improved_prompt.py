@@ -19,8 +19,7 @@ def evaluate_prompt(
     output = generate_with_openai(
         prompt=user_prompt,
         system_prompt=system_prompt,
-        model=model,
-        max_tokens=250
+        model=model
     )
 
     # Parse and check answer

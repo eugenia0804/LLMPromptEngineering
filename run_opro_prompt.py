@@ -31,7 +31,7 @@ def generate_candidates_llm(base_system_prompt: str, sample_data: List[Dict[str,
         """
 
     print("Asking LLM to generate candidate system prompts...")
-    raw = generate_with_openai(prompt=llm_instruction, system_prompt="", model=model, max_tokens=1024)
+    raw = generate_with_openai(prompt=llm_instruction, system_prompt="", model=model)
 
     # Try to parse JSON directly
     candidates = []

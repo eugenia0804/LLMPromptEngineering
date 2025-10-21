@@ -1,13 +1,9 @@
 import os
-from dotenv import load_dotenv
 from openai import OpenAI
-from typing import Optional
 
 def generate_with_openai(prompt: str,
                          system_prompt: str = "",
-                         model: str = "gpt-5-nano",
-                         max_tokens: int = 150) -> str:
-    load_dotenv()
+                         model: str = "gpt-5-nano") -> str:
 
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:

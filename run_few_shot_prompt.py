@@ -32,8 +32,7 @@ def evaluate_prompt(
     output = generate_with_openai(
         prompt=user_prompt,
         system_prompt=system_prompt,
-        model=model,
-        max_tokens=250
+        model=model
     )
 
     # Parse and check answer
@@ -51,7 +50,8 @@ def evaluate_prompt(
 
 def evaluate_dataset(
     data: List[Dict[str, Any]],
-    model: str = "gpt-5-nano"
+    model: str = "gpt-5-nano",
+    num_few_shot: int = 2
 ) -> Dict[str, Any]:
     
     # Introduce best-practice system prompt
@@ -76,7 +76,7 @@ def evaluate_dataset(
 
         # Randomly select a small number of few-shot examples
         pool = [x for x in data if x["id"] != item["id"]]
-        few_shot_examples = random.sample(pool, 2)
+        few_shot_examples = random.sample(pool, num_few_shot)
 
         result = evaluate_prompt(
             question=item["question"],
@@ -135,5 +135,6 @@ if __name__ == "__main__":
     # Run evaluation
     evaluate_dataset(
         data=data,
-        model="gpt-5-nano"
+        model="gpt-5-nano",
+        num_few_shot=2
     )
